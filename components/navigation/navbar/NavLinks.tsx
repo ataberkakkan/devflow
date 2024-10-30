@@ -59,7 +59,7 @@ const NavLinks = ({ isMobileNav = false }: { isMobileNav?: boolean }) => {
             {LinkComponent}
           </SheetClose>
         ) : (
-          <React.Fragment>{LinkComponent}</React.Fragment>
+          <React.Fragment key={item.label}>{LinkComponent}</React.Fragment>
         );
       })}
     </>
