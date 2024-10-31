@@ -8,7 +8,7 @@ import { Badge } from "../ui/badge";
 interface TagCardProps {
   _id: string;
   name: string;
-  questions: number;
+  questions?: number;
   showCount?: boolean;
   compact?: boolean;
 }
