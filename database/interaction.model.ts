@@ -4,7 +4,7 @@ export interface IInteraction {
   user: Types.ObjectId;
   action: string;
   actionId: Types.ObjectId;
-  actionType: string;
+  actionType: "question" | "answer";
 }
 
 const InteractionSchema = new Schema<IInteraction>(
