@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import ROUTES from "@/constants/routes";
 import { getTimeStamp } from "@/lib/utils";
+import { Question, Tag } from "@/types/global";
 
 import TagCard from "./TagCard";
 import Metric from "../Metric";
