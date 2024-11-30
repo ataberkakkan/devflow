@@ -22,7 +22,7 @@ export const api = {
     getAll: () => fetchHandler(`${API_BASE_URL}/users`),
     getById: (id: string) => fetchHandler(`${API_BASE_URL}/users/${id}`),
     getByEmail: (email: string) =>
-      fetchHandler(`${API_BASE_URL}/users/email/${email}`, {
+      fetchHandler(`${API_BASE_URL}/users/email`, {
         method: "POST",
         body: JSON.stringify({ email }),
       }),
@@ -43,7 +43,7 @@ export const api = {
     getAll: () => fetchHandler(`${API_BASE_URL}/accounts`),
     getById: (id: string) => fetchHandler(`${API_BASE_URL}/accounts/${id}`),
     getByProvider: (providerAccountId: string) =>
-      fetchHandler(`${API_BASE_URL}/accounts/email/${providerAccountId}`, {
+      fetchHandler(`${API_BASE_URL}/accounts/provider`, {
         method: "POST",
         body: JSON.stringify({ providerAccountId }),
       }),
