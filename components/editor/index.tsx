@@ -27,6 +27,7 @@ import {
   codeBlockPlugin,
   codeMirrorPlugin,
   diffSourcePlugin,
+  CodeToggle,
 } from "@mdxeditor/editor";
 import "./dark-editor.css";
 import "@mdxeditor/editor/style.css";
@@ -99,6 +100,7 @@ const Editor = ({ value, editorRef, fieldChange, ...props }: EditorProps) => {
                       <Separator />
 
                       <BoldItalicUnderlineToggles />
+                      <CodeToggle />
                       <Separator />
 
                       <ListsToggle />
@@ -110,6 +112,7 @@ const Editor = ({ value, editorRef, fieldChange, ...props }: EditorProps) => {
 
                       <InsertTable />
                       <InsertThematicBreak />
+                      <Separator />
 
                       <InsertCodeBlock />
                     </>

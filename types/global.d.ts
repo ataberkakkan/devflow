@@ -20,6 +20,11 @@ interface Question {
   views: number;
 }
 
+interface RouteParams {
+  params: Promise<Record<string, string>>;
+  searchParams: Promise<Record<string, string>>;
+}
+
 type ActionResponse<T = null> = {
   success: boolean;
   data?: T;
