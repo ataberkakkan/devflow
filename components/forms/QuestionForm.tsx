@@ -67,7 +67,7 @@ const QuestionForm = ({ question, isEdit = false }: QuestionFormProps) => {
       } else if (tagInput.length > 15) {
         form.setError("tags", {
           type: "manual",
-          message: "Tag should bey less than 15 characters",
+          message: "Tag should be less than 15 characters",
         });
       } else if (field.value.includes(tagInput)) {
         form.setError("tags", {
