@@ -50,6 +50,10 @@ export const SignUpSchema = z.object({
     }),
 });
 
+export const GetQuestionSchema = z.object({
+  questionId: z.string().min(1, { message: "Question ID is required." }),
+});
+
 export const AskQuestionSchema = z.object({
   title: z
     .string()
@@ -65,6 +69,10 @@ export const AskQuestionSchema = z.object({
     )
     .min(1, { message: "At least 1 tag is required" })
     .max(3, { message: "Cannot add more than 3 tags" }),
+});
+
+export const EditQuestionSchema = AskQuestionSchema.extend({
+  questionId: z.string().min(1, { message: "Question ID is required." }),
 });
 
 export const UserSchema = z.object({
