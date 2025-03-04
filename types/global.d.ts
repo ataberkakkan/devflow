@@ -31,6 +31,12 @@ interface Answer {
   downvotes: number;
 }
 
+interface Collection {
+  _id: string;
+  author: string | Author;
+  question: Question;
+}
+
 interface RouteParams {
   params: Promise<Record<string, string>>;
   searchParams: Promise<Record<string, string>>;
