@@ -97,6 +97,7 @@ export async function getSavedQuestions(
   const validationResult = await action({
     params,
     schema: PaginatedSearchParamsSchema,
+    authorize: true,
   });
 
   if (validationResult instanceof Error) {
