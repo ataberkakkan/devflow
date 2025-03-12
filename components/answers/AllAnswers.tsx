@@ -1,7 +1,9 @@
+import { AnswerFilters } from "@/constants/filters";
 import { EMPTY_ANSWERS } from "@/constants/states";
 
 import AnswerCard from "../cards/AnswerCard";
 import DataRenderer from "../DataRenderer";
+import CommonFilter from "../filters/CommonFilter";
 
 interface AllAnswersProps extends ActionResponse<Answer[]> {
   totalAnswers: number;
@@ -21,7 +23,11 @@ const AllAnswers = ({
           {totalAnswers === 1 || totalAnswers === 0 ? "Answer" : "Answers"}
         </h3>
 
-        <p>Filters</p>
+        <CommonFilter
+          filters={AnswerFilters}
+          otherClasses="sm:min-w-32"
+          containerClasses="max-xs:w-full"
+        />
       </div>
 
       <DataRenderer

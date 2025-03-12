@@ -129,7 +129,7 @@ export async function getSavedQuestions(
       sortCriteria = { createdAt: -1 };
       break;
     case "oldest":
-      sortCriteria = { createdAt: -1 };
+      sortCriteria = { createdAt: 1 };
       break;
     case "mostvoted":
       sortCriteria = { upvotes: -1 };
