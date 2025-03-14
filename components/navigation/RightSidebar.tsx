@@ -3,20 +3,19 @@ import Link from "next/link";
 
 import ROUTES from "@/constants/routes";
 import { getTopQuestions } from "@/lib/actions/question.action";
+import { getTopTags } from "@/lib/actions/tag.action";
 
 import TagCard from "../cards/TagCard";
 import DataRenderer from "../DataRenderer";
 
-const popularTags = [
-  { _id: "1", name: "react", questions: 100 },
-  { _id: "2", name: "javascript", questions: 200 },
-  { _id: "3", name: "typescript", questions: 150 },
-  { _id: "4", name: "nextjs", questions: 50 },
-  { _id: "5", name: "react-query", questions: 75 },
-];
-
 const RightSidebar = async () => {
   const { success, data: topQuestions, error } = await getTopQuestions();
+
+  const {
+    success: tagSuccess,
+    data: popularTags,
+    error: tagError,
+  } = await getTopTags();
 
   return (
     <section className="custom-scrollbar background-light900_dark200 light-border sticky right-0 top-0 flex h-screen w-[350px] flex-col gap-6 overflow-y-auto border-l p-6 pt-36 shadow-light-300 dark:shadow-none max-xl:hidden">
@@ -60,18 +59,29 @@ const RightSidebar = async () => {
       <div className="mt-16">
         <h3 className="h3-bold text-dark200_light900">Popular Tags</h3>
 
-        <div className="mt-7 flex flex-col gap-4">
-          {popularTags.map(({ _id, name, questions }) => (
-            <TagCard
-              key={_id}
-              _id={_id}
-              name={name}
-              questions={questions}
-              showCount
-              compact
-            />
-          ))}
-        </div>
+        <DataRenderer
+          data={popularTags}
+          empty={{
+            title: "No Tags Found",
+            message: "No tags have been added yet.",
+          }}
+          success={tagSuccess}
+          error={tagError}
+          render={(tags) => (
+            <div className="mt-7 flex flex-col gap-4">
+              {tags.map(({ _id, name, questions }) => (
+                <TagCard
+                  key={_id}
+                  _id={_id}
+                  name={name}
+                  questions={questions}
+                  showCount
+                  compact
+                />
+              ))}
+            </div>
+          )}
+        />
       </div>
     </section>
   );

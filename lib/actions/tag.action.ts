@@ -9,10 +9,11 @@ import {
 import action from "../handlers/action";
 import handleError from "../handlers/error";
 import { NotFoundError } from "../http-errors";
+import connectDb from "../mongoose";
 
-export const getTags = async (
+export async function getTags(
   params: PaginatedSearchParams
-): Promise<ActionResponse<{ tags: Tag[]; isNext: boolean }>> => {
+): Promise<ActionResponse<{ tags: Tag[]; isNext: boolean }>> {
   const validationResult = await action({
     params,
     schema: PaginatedSearchParamsSchema,
@@ -69,13 +70,13 @@ export const getTags = async (
   } catch (error) {
     return handleError(error) as ErrorResponse;
   }
-};
+}
 
-export const getTagQuestions = async (
+export async function getTagQuestions(
   params: GetTagQuestionsParams
 ): Promise<
   ActionResponse<{ tag: Tag; questions: Question[]; isNext: boolean }>
-> => {
+> {
   const validationResult = await action({
     params,
     schema: GetTagQuestionsSchema,
@@ -129,4 +130,19 @@ export const getTagQuestions = async (
   } catch (error) {
     return handleError(error) as ErrorResponse;
   }
-};
+}
+
+export async function getTopTags(): Promise<ActionResponse<Tag[]>> {
+  try {
+    await connectDb();
+
+    const tags = await Tag.find().sort({ questions: -1 }).limit(5);
+
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(tags)),
+    };
+  } catch (error) {
+    return handleError(error) as ErrorResponse;
+  }
+}
