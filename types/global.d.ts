@@ -39,6 +39,7 @@ interface Question {
 interface Answer {
   _id: string;
   author: Author;
+  question: string;
   content: string;
   createdAt: Date;
   upvotes: number;
