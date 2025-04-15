@@ -45,7 +45,7 @@ const CommonFilter = ({
   };
 
   return (
-    <div className={cn("relative", containerClasses)}>
+    <div className={cn("relative z-50", containerClasses)}>
       <Select
         onValueChange={handleUpdateParams}
         defaultValue={paramsFilter || undefined}
