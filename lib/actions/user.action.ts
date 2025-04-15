@@ -226,7 +226,7 @@ export async function getUserTopTags(params: GetUserTagsParams): Promise<
       { $limit: 10 },
       {
         $project: {
-          _id: "$tagInfo.id",
+          _id: "$tagInfo._id",
           name: "$tagInfo.name",
           count: 1,
         },
