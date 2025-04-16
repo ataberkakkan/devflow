@@ -39,7 +39,7 @@ const Profile = async ({ params, searchParams }: RouteParams) => {
       </div>
     );
 
-  const { user, totalQuestions, totalAnswers } = data!;
+  const { user } = data!;
 
   const { data: userStats } = await getUserStats({ userId: id });
 
