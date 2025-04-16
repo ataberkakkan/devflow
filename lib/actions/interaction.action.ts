@@ -65,7 +65,7 @@ export async function createInteraction(
 
 async function updateReputation(params: UpdateReputationParams) {
   const { interaction, session, performerId, authorId } = params;
-  const { action, actionId, actionType } = interaction;
+  const { action, actionType } = interaction;
 
   let performerPoints = 0;
   let authorPoints = 0;
