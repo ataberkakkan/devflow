@@ -1,9 +1,21 @@
-import CommonFilter from "@/components/filters/CommonFilter";
+import JobCard from "@/components/cards/JobCard";
+import DataRenderer from "@/components/DataRenderer";
 import JobsFilter from "@/components/filters/JobsFilter";
 import LocalSearch from "@/components/search/LocalSearch";
+import { DEFAULT_EMPTY, EMPTY_JOBS } from "@/constants/states";
+import { fetchLocation, getJobs } from "@/lib/actions/job.action";
 
 const FindJobs = async ({ searchParams }: RouteParams) => {
-  const { page, pageSize, query, location } = await searchParams;
+  const { page, query, location } = await searchParams;
+
+  const userLocation = await fetchLocation();
+
+  const { success, data, error } = await getJobs({
+    page: Number(page) || 1,
+    query: query ? query : `Next.js Developer in ${userLocation}`,
+  });
+
+  const { jobs } = data || {};
 
   return (
     <div>
@@ -20,7 +32,19 @@ const FindJobs = async ({ searchParams }: RouteParams) => {
         <JobsFilter otherClasses="min-h-[56px] sm:min-w-[300px]" />
       </div>
 
-      {/* Display Jobs */}
+      <DataRenderer
+        success={success}
+        error={error}
+        data={jobs}
+        empty={EMPTY_JOBS}
+        render={(jobs) => (
+          <div className="mt-12 flex flex-wrap gap-5">
+            {jobs.map((job) => (
+              <JobCard key={job.job_id} job={job} />
+            ))}
+          </div>
+        )}
+      />
     </div>
   );
 };

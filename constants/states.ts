@@ -59,3 +59,9 @@ export const EMPTY_USERS = {
   message:
     "It's ALONE in the world. You're the only one here. Join us and let the world know who you are.",
 };
+
+export const EMPTY_JOBS = {
+  title: "We couldn't find any jobs in your location",
+  message:
+    "No one is hiring in your area. But don't worry, the world is a big place. Keep searching!",
+};

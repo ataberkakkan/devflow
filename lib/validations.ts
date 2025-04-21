@@ -140,6 +140,7 @@ export const PaginatedSearchParamsSchema = z.object({
   query: z.string().optional(),
   filter: z.string().optional(),
   sort: z.string().optional(),
+  location: z.string().optional(),
 });
 
 export const GetTagQuestionsSchema = PaginatedSearchParamsSchema.extend({
