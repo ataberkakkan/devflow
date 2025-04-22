@@ -1,4 +1,3 @@
-import { InteractionActionEnums } from "@/database/interaction.model";
 import { z } from "zod";
 
 export const signInSchema = z.object({
@@ -222,7 +221,16 @@ export const DeleteAnswerSchema = z.object({
 });
 
 export const CreateInteractionSchema = z.object({
-  action: z.enum(InteractionActionEnums),
+  action: z.enum([
+    "view",
+    "upvote",
+    "downvote",
+    "bookmark",
+    "post",
+    "edit",
+    "delete",
+    "search",
+  ]),
   actionTarget: z.enum(["question", "answer"]),
   actionId: z.string().min(1, { message: "Action ID is required." }),
   authorId: z.string().min(1, { message: "Author ID is required." }),
