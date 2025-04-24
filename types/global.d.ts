@@ -96,6 +96,12 @@ type ActionResponse<T = null> = {
   status?: number;
 };
 
+interface GlobalSearchedItem {
+  id: string;
+  type: "question" | "answer" | "user" | "tag";
+  title: string;
+}
+
 type SuccessResponse<T = null> = ActionResponse<T> & { success: true };
 type ErrorResponse = ActionResponse<undefined> & { success: false };
 
