@@ -1,6 +1,7 @@
 import JobCard from "@/components/cards/JobCard";
 import DataRenderer from "@/components/DataRenderer";
 import JobsFilter from "@/components/filters/JobsFilter";
+import Pagination from "@/components/Pagination";
 import LocalSearch from "@/components/search/LocalSearch";
 import { DEFAULT_EMPTY, EMPTY_JOBS } from "@/constants/states";
 import { fetchLocation, getJobs } from "@/lib/actions/job.action";
@@ -12,8 +13,12 @@ const FindJobs = async ({ searchParams }: RouteParams) => {
 
   const { success, data, error } = await getJobs({
     page: Number(page) || 1,
-    query: query ? query : `Next.js Developer in ${userLocation}`,
+    query: query
+      ? `${query}, ${location}`
+      : `Next.js Developer in ${userLocation}`,
   });
+
+  const parsedPage = parseInt(page ?? 1);
 
   const { jobs } = data || {};
 
@@ -45,6 +50,8 @@ const FindJobs = async ({ searchParams }: RouteParams) => {
           </div>
         )}
       />
+
+      <Pagination page={parsedPage} isNext={jobs?.length === 10} />
     </div>
   );
 };
