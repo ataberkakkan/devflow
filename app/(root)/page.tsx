@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Link from "next/link";
 
 import QuestionCard from "@/components/cards/QuestionCard";
@@ -11,7 +12,6 @@ import { HomePageFilters } from "@/constants/filters";
 import ROUTES from "@/constants/routes";
 import { EMPTY_QUESTION } from "@/constants/states";
 import { getQuestions } from "@/lib/actions/question.action";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Dev Overflow | Home",
